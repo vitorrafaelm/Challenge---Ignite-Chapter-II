@@ -1,0 +1,101 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rentx Documentation",
+        "description": "This is an API Rent",
+        "version": "1.0.0",
+        "contact": {
+            "email": "vitor.rafael1518@gmail.com"
+        }
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create a user",
+                "description": "Create a new User",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "mail",
+                                    "email": "mail@example.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    }, 
+                    "500": {
+                        "description": "Error: email already exists"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List users",
+                "description": "List all users - Needs to send user_id to verify if he is an admin",
+                "responses": {
+                    "200": {
+                        "description": "Listed"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            }
+            
+        },
+        "/users/:user_id": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List users",
+                "description": "List all users - Needs to send user_id to verify if he is an admin",
+                "responses": {
+                    "200": {
+                        "description": "Listed"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            }
+        }, 
+        "/users/:user_id/admin": {
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Make a user an Admin",
+                "description": "Make a user an Admin",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        }
+    }
+}
